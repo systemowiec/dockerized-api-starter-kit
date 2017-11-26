@@ -1,0 +1,26 @@
+imports:
+  - { resource: param_converters.yml }
+  - { resource: listeners.yml }
+
+services:
+    pdo.database_connection:
+      class: PDO
+      arguments: [ 'mysql:dbname=%starter.dbname%;host=%starter.dbhost%;port=%starter.dbport%', '%starter.dbusername%', '%starter.dbpassword%' ]
+
+    controller.product:
+      class: Application\Http\Controller\ProductController
+      arguments: ['@product.repository']
+
+    product_normalizer:
+        class: Application\Http\ProductNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    product.factory:
+      class: Starter\Product\ProductFactory
+
+    product.repository:
+      class: Application\Persistence\Database\ProductRepository
+      arguments:
+        - '@pdo.database_connection'
+        - '@product.factory'

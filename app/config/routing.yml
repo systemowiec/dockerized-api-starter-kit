@@ -1,0 +1,14 @@
+product_by_uuid:
+    path: /product/{uuid}
+    methods: [ GET ]
+    defaults:  { _controller: controller.product:getAction }
+
+product_list:
+    path: /products/
+    methods: [ GET ]
+    defaults:  { _controller: controller.product:indexAction }
+
+product_create:
+    path: /product/create
+    methods: [ POST ]
+    defaults:  { _controller: controller.product:createAction }

@@ -1,0 +1,3 @@
+imports:
+  - { resource: parameters_e2e.yml }
+  - { resource: services_e2e.yml }

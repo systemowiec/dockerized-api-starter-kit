@@ -1,0 +1,6 @@
+services:
+    product.converter:
+      class: Application\Http\ParamConverter\ProductConverter
+      arguments: ['@product.factory']
+      tags:
+       - { name: request.param_converter }

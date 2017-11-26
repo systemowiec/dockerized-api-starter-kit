@@ -1,0 +1,46 @@
+nginx:
+    build: ./docker/nginx/
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes_from:
+        - app_data
+    volumes:
+        - ./docker/nginx/conf.d:/etc/nginx/conf.d/
+
+php:
+    build: ./docker/php/
+    links:
+        - mysql
+    volumes_from:
+        - app_data
+
+php-dev:
+    build: ./docker/php-dev/
+    volumes_from:
+        - app_data
+
+mysql:
+    image: percona:5.7.18
+    ports:
+        - 3306:3306
+    volumes_from:
+        - database_data
+    environment:
+        MYSQL_ROOT_PASSWORD: starter
+        MYSQL_DATABASE: starter
+        MYSQL_USER: root
+        MYSQL_PASSWORD: starter
+
+database_data:
+    image: percona:5.6.33
+    volumes:
+        - /var/lib/mysql
+    command: "true"
+
+app_data:
+    image: php:7.0-fpm
+    volumes:
+        - ./:/var/www/html:rw
+    command: "true"

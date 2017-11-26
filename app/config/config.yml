@@ -1,0 +1,11 @@
+imports:
+  - { resource: parameters.yml }
+  - { resource: services.yml }
+
+framework:
+    # secret should come from environment's configuration
+    secret: 'change-it-to-unique'
+    serializer: { enabled: true }
+
+sensio_framework_extra:
+    request: { converters: true, auto_convert: true }

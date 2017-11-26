@@ -1,0 +1,36 @@
+default:
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        class: Application\AppKernel
+  autoload:
+    '': %paths.base%/features/bootstrap/
+
+domain:
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: test
+  suites:
+    default:
+      filters:
+        tags: '~@e2e'
+      paths: ['%paths.base%/features/']
+      contexts:
+        - Context\Domain\FeatureContext:
+
+
+e2e:
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: e2e
+  suites:
+    default:
+      paths: ['%paths.base%/features/']
+      contexts:
+        - Context\E2E\FeatureContext:
+            databaseConnection: '@pdo.database_connection'
+        - Context\E2E\ProductContext:
+            databaseConnection: '@pdo.database_connection'
+            kernel: '@kernel'

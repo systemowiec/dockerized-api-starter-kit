@@ -1,0 +1,6 @@
+parameters:
+    starter.dbhost: 127.0.0.1
+    starter.dbname:
+    starter.dbpassword:
+    starter.dbusername:
+    starter.dbport: 3306

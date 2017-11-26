@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+/app/cache
+/app/config/parameters.yml
+/app/config/parameters_e2e.yml
+/app/logs/*
+/bin/*
+/vendor/

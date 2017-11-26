@@ -1,0 +1,3 @@
+imports:
+  - { resource: parameters_test.yml }
+  - { resource: services_test.yml }
